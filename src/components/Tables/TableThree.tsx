@@ -10,7 +10,10 @@ const packageData: Package[] = [
     rankevolution: 'Hors 30',
     ranking: '+4',
     audit: "75%",
-    affaire:"Bloquée"
+    affaire:"Bloquée",
+    date_debut: "01/01/2022",
+    date_fin: "01/01/2022",
+    cms:"Dudda"
 
   },
   {
@@ -22,7 +25,10 @@ const packageData: Package[] = [
     rankevolution: 'Top 10',
     ranking: '-1',
     audit: "70%",
-    affaire:"Fabrication"
+    affaire:"Fabrication",
+    date_debut: "01/01/2022",
+    date_fin: "01/01/2022",
+    cms:"Dudda"
   },{
     name: 'Avocat - www.avocat-paris.com',
     etat: "Active",
@@ -32,7 +38,10 @@ const packageData: Package[] = [
     rankevolution: 'Top 10',
     ranking: '+2',
     audit: "80%",
-    affaire:"Actif / Suivi"
+    affaire:" Actif",
+    date_debut: "01/01/2022",
+    date_fin: "01/01/2022",
+    cms:"Wordpress"
 
   },
   {
@@ -44,7 +53,10 @@ const packageData: Package[] = [
     rankevolution: 'Top 5',
     ranking: '-3',
     audit: "50%",
-    affaire:"Livraison"
+    affaire:"Livraison",
+    date_debut: "01/01/2022",
+    date_fin: "01/01/2022",
+    cms:"Dudda"
 
   },
   {
@@ -56,7 +68,10 @@ const packageData: Package[] = [
     rankevolution: 'Top 10',
     ranking: '+4',
     audit: "75%",
-    affaire:"Bloquée"
+    affaire:"Bloquée",
+    date_debut: "01/01/2022",
+    date_fin: "01/01/2022",
+    cms:"MiniSite"
 
   },
   {
@@ -68,7 +83,10 @@ const packageData: Package[] = [
     rankevolution: 'Top 30',
     ranking: '-1',
     audit: "70%",
-    affaire:"Fabrication"
+    affaire:"Fabrication",
+    date_debut: "01/01/2022",
+    date_fin: "01/01/2022",
+    cms:"YellowSmith"
   },
 ];
 
@@ -79,32 +97,39 @@ const TableThree = () => {
         <table className="w-full table-auto js-datatable">
           <thead>
             <tr className="bg-gray-2 text-left dark:bg-meta-4">
-              <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+              <th className="py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
                 Site
               </th>
-              <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+              <th className="min-w-[200px] py-4 px-4 font-medium text-black dark:text-white">
                 Trafic
               </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+              <th className="  py-4 px-4 font-medium text-black dark:text-white">
                 Ranking
               </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+              <th className="  py-4 px-4 font-medium text-black dark:text-white">
                 Evolution
               </th>
 
               <th className="py-4 px-4 font-medium text-black dark:text-white">
                 Site Health
               </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+              <th className="  py-4 px-4 font-medium text-black dark:text-white">
                 Type du referancement
               </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+              <th className="  py-4 px-4 font-medium text-black dark:text-white">
                 Offre
               </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+              <th className="  py-4 px-4 font-medium text-black dark:text-white">
                 Status d'affaire
               </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+              <th className="  py-4 px-4 font-medium text-black dark:text-white">
+              lancement  fin
+              </th>
+              
+              <th className="  py-4 px-4 font-medium text-black dark:text-white">
+              CMS
+              </th>
+              <th className="  py-4 px-4 font-medium text-black dark:text-white">
                 Etat
               </th>
               <th className="py-4 px-4 font-medium text-black dark:text-white">
@@ -180,6 +205,26 @@ const TableThree = () => {
                     className={`inline-flex rounded-full  py-1 px-3 text-sm font-medium  ${packageItem.affaire == "Livraison" ? "bg-cyan-600 text-white" : packageItem.affaire == "Fabrication" ? "bg-violet-800 text-white" : "bg-teal-500 text-white"}`}
                   >
                     {packageItem.affaire}
+
+
+                  </p>
+                </td>
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <p
+                    className={`inline-flex rounded-full  py-1 px-3 text-sm font-medium  `}
+                  >
+                    -{packageItem.date_debut}<br></br>
+                    -{packageItem.date_fin}
+
+
+                  </p>
+                </td>
+                
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <p
+                    className={`inline-flex rounded-full  py-1 px-3 text-sm font-medium  ${packageItem.cms == "Wordpress" ? "bg-cyan-600 text-white" : packageItem.cms == "Dudda" ? "bg-violet-800 text-white" : "bg-teal-500 text-white"}`}
+                  >
+                    {packageItem.cms}
 
 
                   </p>

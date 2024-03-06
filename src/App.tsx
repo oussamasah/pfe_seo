@@ -16,7 +16,8 @@ import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 
-function App() {
+function App() { 
+
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
 
@@ -34,10 +35,10 @@ function App() {
     <>
       <Routes>
         <Route
-          index
+          
           element={
             <>
-              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="eCommerce Dashboard | RankBoost - Best tool for your seo experience" />
               <ECommerce />
             </>
           }
@@ -46,7 +47,7 @@ function App() {
           path="/calendar"
           element={
             <>
-              <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Calendar | RankBoost - Best tool for your seo experience" />
               <Calendar />
             </>
           }
@@ -55,7 +56,7 @@ function App() {
           path="/profile"
           element={
             <>
-              <PageTitle title="Profile | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Profile | RankBoost - Best tool for your seo experience" />
               <Profile />
             </>
           }
@@ -64,7 +65,7 @@ function App() {
           path="/forms/form-elements"
           element={
             <>
-              <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Form Elements | RankBoost - Best tool for your seo experience" />
               <FormElements />
             </>
           }
@@ -73,17 +74,22 @@ function App() {
           path="/forms/form-layout"
           element={
             <>
-              <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Form Layout | RankBoost - Best tool for your seo experience" />
               <FormLayout />
             </>
           }
         />
+
         <Route
-          path="/tables"
+   
+          index
           element={
+            
             <>
-              <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+        
+              <PageTitle title="Projects | RankBoost - Best tool for your seo experience" />
               <Tables />
+          
             </>
           }
         />
@@ -91,7 +97,7 @@ function App() {
           path="/settings"
           element={
             <>
-              <PageTitle title="Settings | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Settings | RankBoost - Best tool for your seo experience" />
               <Settings />
             </>
           }
@@ -100,7 +106,7 @@ function App() {
           path="/chart"
           element={
             <>
-              <PageTitle title="Basic Chart | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Basic Chart | RankBoost - Best tool for your seo experience" />
               <Chart />
             </>
           }
@@ -109,7 +115,7 @@ function App() {
           path="/ui/alerts"
           element={
             <>
-              <PageTitle title="Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Alerts | RankBoost - Best tool for your seo experience" />
               <Alerts />
             </>
           }
@@ -118,7 +124,7 @@ function App() {
           path="/ui/buttons"
           element={
             <>
-              <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Buttons | RankBoost - Best tool for your seo experience" />
               <Buttons />
             </>
           }
@@ -127,7 +133,7 @@ function App() {
           path="/auth/signin"
           element={
             <>
-              <PageTitle title="Signin | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Signin | RankBoost - Best tool for your seo experience" />
               <SignIn />
             </>
           }
@@ -136,7 +142,7 @@ function App() {
           path="/auth/signup"
           element={
             <>
-              <PageTitle title="Signup | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Signup | RankBoost - Best tool for your seo experience" />
               <SignUp />
             </>
           }

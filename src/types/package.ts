@@ -8,4 +8,7 @@ export type Package = {
   ranking: string;
   rankevolution: string;
   audit: string;
+  date_debut: string;
+  date_fin: string;
+  cms:string
 };

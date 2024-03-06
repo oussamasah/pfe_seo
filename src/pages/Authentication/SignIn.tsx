@@ -1,13 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import LogoDark from '../../images/logo/logo-dark.svg';
 import Logo from '../../images/logo/logo.svg';
 import DefaultLayout from '../../layout/DefaultLayout';
-
+import { GoogleLogin } from 'react-google-login'; 
+import axios from "axios"
 const SignIn: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [accessToken, setAccessToken] = useState(null);
+
+  const handleLogin = async (googleUser:any) => {
+    const accessToken = googleUser.getAuthResponse().access_token;
+    setAccessToken(accessToken);
+    // Similar requests can be made for AdWords and Search Console data
+  };
+
+  const handleGoogleLoginFailure = (error:any) => {
+    console.error('Google login failed:', error);
+  };
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(import.meta.env.VITE_API_HOST+'/auth/login', { email, password });
+      console.log(response.headers)
+      const  token = response.headers['token']
+      const  refresh = response.headers['refresh']
+      localStorage.setItem('token', token);
+      localStorage.setItem('refresh', refresh);
+      // Redirect to dashboard or show success message
+      window.location.href = '/';
+    } catch (error) {
+      console.log(error)
+      setError('Invalid email or password');
+    }
+  };
   return (
-    <DefaultLayout>
+   <div className='container mx-auto'>
       <Breadcrumb pageName="Sign In" />
 
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -153,10 +185,10 @@ const SignIn: React.FC = () => {
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
               <span className="mb-1.5 block font-medium">Start for free</span>
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
-                Sign In to TailAdmin
+                Sign In to RankBoost
               </h2>
 
-              <form>
+              <form  onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Email
@@ -166,6 +198,7 @@ const SignIn: React.FC = () => {
                       type="email"
                       placeholder="Enter your email"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      onChange={(e) => setEmail(e.target.value)} required
                     />
 
                     <span className="absolute right-4 top-4">
@@ -190,13 +223,14 @@ const SignIn: React.FC = () => {
 
                 <div className="mb-6">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    Re-type Password
+                  Password
                   </label>
                   <div className="relative">
                     <input
                       type="password"
                       placeholder="6+ Characters, 1 Capital letter"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      onChange={(e) => setPassword(e.target.value)} required
                     />
 
                     <span className="absolute right-4 top-4">
@@ -222,7 +256,7 @@ const SignIn: React.FC = () => {
                     </span>
                   </div>
                 </div>
-
+                {error && <p>{error}</p>}
                 <div className="mb-5">
                   <input
                     type="submit"
@@ -230,7 +264,17 @@ const SignIn: React.FC = () => {
                     className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
                   />
                 </div>
-
+                <GoogleLogin
+            clientId="520979061115-gf0qft3sv4gvmcv74k6icsvnfe4fo93i.apps.googleusercontent.com"
+            onSuccess={handleLogin}
+            onFailure={handleGoogleLoginFailure}
+            cookiePolicy={'single_host_origin'}
+            isSignedIn={true}
+            // Request access to Google Analytics, AdWords, and Search Console scopes
+            scope="https://www.googleapis.com/auth/analytics.readonly https://www.googleapis.com/auth/adwords https://www.googleapis.com/auth/webmasters.readonly"
+            // Customize the button text
+            buttonText="Login with Google"
+          />
                 <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
                   <span>
                     <svg
@@ -268,20 +312,13 @@ const SignIn: React.FC = () => {
                   Sign in with Google
                 </button>
 
-                <div className="mt-6 text-center">
-                  <p>
-                    Don’t have any account?{' '}
-                    <Link to="/auth/signup" className="text-primary">
-                      Sign Up
-                    </Link>
-                  </p>
-                </div>
+                
               </form>
             </div>
           </div>
         </div>
       </div>
-    </DefaultLayout>
+ </div>
   );
 };
 
